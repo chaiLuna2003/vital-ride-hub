@@ -63,14 +63,14 @@ function Landing() {
 function Nav() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
-      <nav className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-white/10 bg-background/40 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-6">
+      <nav className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-black/10 bg-background/60 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-6">
         <a href="#" className="flex items-center gap-2 font-display text-base font-bold">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
             <HeartPulse className="h-4 w-4 text-primary-foreground" />
           </span>
           VitalID<span className="text-accent">Riders</span>
         </a>
-        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-sm text-muted-foreground md:flex">
+        <div className="hidden items-center gap-1 rounded-full border border-black/10 bg-black/5 px-2 py-1 text-sm text-muted-foreground md:flex">
           {[
             { href: "#como", label: "Cómo funciona" },
             { href: "#beneficios", label: "Beneficios" },
@@ -80,7 +80,7 @@ function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-1.5 transition-colors hover:bg-white/10 hover:text-foreground"
+              className="rounded-full px-4 py-1.5 transition-colors hover:bg-black/10 hover:text-foreground"
             >
               {l.label}
             </a>
