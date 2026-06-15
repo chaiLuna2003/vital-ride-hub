@@ -44,24 +44,24 @@
 :root {
   --radius: 0.9rem;
 
-  /* Dark theme by default */
-  --background: #161427;
-  --foreground: #F8F6F7;
+  /* Light theme */
+  --background: #F5F1F2;
+  --foreground: #161427;
 
-  --card: #1e1a36;
-  --card-foreground: #F8F6F7;
+  --card: #FFFFFF;
+  --card-foreground: #161427;
 
-  --popover: #1e1a36;
-  --popover-foreground: #F8F6F7;
+  --popover: #FFFFFF;
+  --popover-foreground: #161427;
 
   --primary: #7B1E3A;
   --primary-foreground: #F8F6F7;
 
-  --secondary: #2C254D;
-  --secondary-foreground: #F8F6F7;
+  --secondary: #EBE7EC;
+  --secondary-foreground: #161427;
 
-  --muted: #221d3d;
-  --muted-foreground: #B8B2C8;
+  --muted: #E8E4E8;
+  --muted-foreground: #6B6580;
 
   --accent: #B04A6A;
   --accent-foreground: #F8F6F7;
@@ -72,14 +72,14 @@
   --success: #3D8B6D;
   --success-foreground: #F8F6F7;
 
-  --border: color-mix(in oklab, #B8B2C8 16%, transparent);
-  --input: color-mix(in oklab, #B8B2C8 22%, transparent);
+  --border: color-mix(in oklab, #2C254D 12%, transparent);
+  --input: color-mix(in oklab, #2C254D 18%, transparent);
   --ring: #B04A6A;
 
   --hover: #922B4A;
   --ivory: #F5F1F2;
 
-  --gradient-hero: radial-gradient(circle at 20% 20%, color-mix(in oklab, #7B1E3A 45%, transparent), transparent 55%), radial-gradient(circle at 85% 10%, color-mix(in oklab, #2C254D 70%, transparent), transparent 60%);
+  --gradient-hero: radial-gradient(circle at 20% 20%, color-mix(in oklab, #7B1E3A 18%, transparent), transparent 55%), radial-gradient(circle at 85% 10%, color-mix(in oklab, #2C254D 22%, transparent), transparent 60%);
   --gradient-accent: linear-gradient(135deg, #7B1E3A, #B04A6A);
 }
 
