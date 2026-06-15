@@ -63,14 +63,14 @@ function Landing() {
 function Nav() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
-      <nav className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-white/10 bg-background/40 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-6">
+      <nav className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-black/10 bg-background/60 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-6">
         <a href="#" className="flex items-center gap-2 font-display text-base font-bold">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
             <HeartPulse className="h-4 w-4 text-primary-foreground" />
           </span>
           VitalID<span className="text-accent">Riders</span>
         </a>
-        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-sm text-muted-foreground md:flex">
+        <div className="hidden items-center gap-1 rounded-full border border-black/10 bg-black/5 px-2 py-1 text-sm text-muted-foreground md:flex">
           {[
             { href: "#como", label: "Cómo funciona" },
             { href: "#beneficios", label: "Beneficios" },
@@ -80,7 +80,7 @@ function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-1.5 transition-colors hover:bg-white/10 hover:text-foreground"
+              className="rounded-full px-4 py-1.5 transition-colors hover:bg-black/10 hover:text-foreground"
             >
               {l.label}
             </a>
@@ -115,7 +115,7 @@ function Hero() {
 
       <div className="relative mx-auto w-full max-w-6xl px-6 py-32">
         <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-accent backdrop-blur-md">
+          <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-1.5 text-xs font-semibold text-accent backdrop-blur-md">
             <ShieldCheck className="h-4 w-4" /> Diseñado para motociclistas
           </span>
           <h1 className="mt-6 text-5xl font-extrabold leading-[1.03] md:text-7xl">
@@ -135,20 +135,20 @@ function Hero() {
             </a>
             <a
               href="#como"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-7 py-3.5 font-semibold text-foreground backdrop-blur-md transition-colors hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-7 py-3.5 font-semibold text-foreground backdrop-blur-md transition-colors hover:bg-black/10"
             >
               Ver cómo funciona
             </a>
           </div>
 
-          <div className="mt-10 inline-flex flex-wrap items-center gap-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-sm text-muted-foreground backdrop-blur-md">
+          <div className="mt-10 inline-flex flex-wrap items-center gap-6 rounded-2xl border border-black/10 bg-black/5 px-6 py-4 text-sm text-muted-foreground backdrop-blur-md">
             <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Sin batería</span>
             <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Resistente al agua</span>
             <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Datos cifrados</span>
           </div>
         </div>
 
-        <div className="animate-float mt-12 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-card/60 p-4 shadow-[var(--shadow-soft)] backdrop-blur-xl md:absolute md:bottom-12 md:right-6 md:mt-0">
+        <div className="animate-float mt-12 inline-flex items-center gap-3 rounded-2xl border border-black/10 bg-card/70 p-4 shadow-[var(--shadow-soft)] backdrop-blur-xl md:absolute md:bottom-12 md:right-6 md:mt-0">
           <span className="animate-pulse-ring grid h-11 w-11 place-items-center rounded-full bg-success/20">
             <HeartPulse className="h-5 w-5 text-success" />
           </span>
