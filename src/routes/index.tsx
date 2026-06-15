@@ -15,6 +15,7 @@ import {
   Star,
 } from "lucide-react";
 import heroRider from "@/assets/hero-rider.jpg";
+import heroVideo from "@/assets/hero-rider.mp4.asset.json";
 import qrTag from "@/assets/qr-tag.jpg";
 
 export const Route = createFileRoute("/")({
@@ -34,6 +35,9 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:image", content: heroRider },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "preload", as: "image", href: heroRider, fetchpriority: "high" },
     ],
   }),
   component: Landing,
@@ -58,18 +62,29 @@ function Landing() {
 
 function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
-            <HeartPulse className="h-5 w-5 text-primary-foreground" />
+    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
+      <nav className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-white/10 bg-background/40 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-6">
+        <a href="#" className="flex items-center gap-2 font-display text-base font-bold">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
+            <HeartPulse className="h-4 w-4 text-primary-foreground" />
           </span>
           VitalID<span className="text-accent">Riders</span>
         </a>
-        <div className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#como" className="transition-colors hover:text-foreground">Cómo funciona</a>
-          <a href="#beneficios" className="transition-colors hover:text-foreground">Beneficios</a>
-          <a href="#precios" className="transition-colors hover:text-foreground">Precios</a>
+        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-sm text-muted-foreground md:flex">
+          {[
+            { href: "#como", label: "Cómo funciona" },
+            { href: "#beneficios", label: "Beneficios" },
+            { href: "#precios", label: "Precios" },
+            { href: "#testimonios", label: "Testimonios" },
+          ].map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="rounded-full px-4 py-1.5 transition-colors hover:bg-white/10 hover:text-foreground"
+            >
+              {l.label}
+            </a>
+          ))}
         </div>
         <a
           href="#precios"
@@ -84,13 +99,26 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="relative bg-hero-glow">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold text-accent">
+    <section className="relative flex min-h-screen items-center overflow-hidden">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        src={heroVideo.url}
+        poster={heroRider}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
+      <div className="absolute inset-0 bg-hero-glow opacity-70" />
+
+      <div className="relative mx-auto w-full max-w-6xl px-6 py-32">
+        <div className="max-w-2xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-accent backdrop-blur-md">
             <ShieldCheck className="h-4 w-4" /> Diseñado para motociclistas
           </span>
-          <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] md:text-6xl">
+          <h1 className="mt-6 text-5xl font-extrabold leading-[1.03] md:text-7xl">
             Tu identidad vital <span className="text-gradient">siempre contigo</span>
           </h1>
           <p className="mt-6 max-w-md text-lg text-muted-foreground">
@@ -107,35 +135,26 @@ function Hero() {
             </a>
             <a
               href="#como"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 font-semibold text-foreground transition-colors hover:bg-secondary"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-7 py-3.5 font-semibold text-foreground backdrop-blur-md transition-colors hover:bg-white/20"
             >
               Ver cómo funciona
             </a>
           </div>
-          <div className="mt-8 flex items-center gap-6 text-sm text-muted-foreground">
+
+          <div className="mt-10 inline-flex flex-wrap items-center gap-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-sm text-muted-foreground backdrop-blur-md">
             <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Sin batería</span>
             <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Resistente al agua</span>
             <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Datos cifrados</span>
           </div>
         </div>
 
-        <div className="relative">
-          <div className="absolute -inset-4 rounded-3xl bg-[image:var(--gradient-accent)] opacity-20 blur-2xl" />
-          <img
-            src={heroRider}
-            alt="Motociclista equipado junto a su moto al atardecer"
-            width={1280}
-            height={1280}
-            className="relative w-full rounded-3xl border border-border object-cover shadow-[var(--shadow-soft)]"
-          />
-          <div className="animate-float absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl border border-border bg-card/95 p-4 shadow-[var(--shadow-soft)] backdrop-blur">
-            <span className="animate-pulse-ring grid h-11 w-11 place-items-center rounded-full bg-success/20">
-              <HeartPulse className="h-5 w-5 text-success" />
-            </span>
-            <div>
-              <p className="text-sm font-semibold">Perfil médico activo</p>
-              <p className="text-xs text-muted-foreground">Listo para emergencias</p>
-            </div>
+        <div className="animate-float mt-12 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-card/60 p-4 shadow-[var(--shadow-soft)] backdrop-blur-xl md:absolute md:bottom-12 md:right-6 md:mt-0">
+          <span className="animate-pulse-ring grid h-11 w-11 place-items-center rounded-full bg-success/20">
+            <HeartPulse className="h-5 w-5 text-success" />
+          </span>
+          <div>
+            <p className="text-sm font-semibold">Perfil médico activo</p>
+            <p className="text-xs text-muted-foreground">Listo para emergencias</p>
           </div>
         </div>
       </div>
@@ -386,7 +405,7 @@ function Testimonials() {
     },
   ];
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section id="testimonios" className="mx-auto max-w-6xl px-6 py-24">
       <Header tag="Testimonios" title="Riders que ya viajan protegidos" subtitle="Historias reales de la carretera." />
       <div className="mt-14 grid gap-6 md:grid-cols-3">
         {items.map((t) => (
