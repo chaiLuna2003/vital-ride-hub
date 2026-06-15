@@ -15,6 +15,7 @@ import {
   Star,
 } from "lucide-react";
 import heroRider from "@/assets/hero-rider.jpg";
+import heroVideo from "@/assets/hero-rider.mp4.asset.json";
 import qrTag from "@/assets/qr-tag.jpg";
 
 export const Route = createFileRoute("/")({
