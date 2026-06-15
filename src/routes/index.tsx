@@ -402,7 +402,7 @@ function Testimonials() {
     },
   ];
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section id="testimonios" className="mx-auto max-w-6xl px-6 py-24">
       <Header tag="Testimonios" title="Riders que ya viajan protegidos" subtitle="Historias reales de la carretera." />
       <div className="mt-14 grid gap-6 md:grid-cols-3">
         {items.map((t) => (
