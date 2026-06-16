@@ -63,22 +63,28 @@ function Landing() {
 }
 
 function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: "#como", label: "Cómo funciona" },
+    { href: "#beneficios", label: "Beneficios" },
+    { href: "#precios", label: "Precios" },
+    { href: "#testimonios", label: "Testimonios" },
+  ];
+
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
-      <nav className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border border-white/10 bg-background/60 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-6">
-        <a href="#" className="flex items-center gap-2 font-display text-base font-bold">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
+    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-4">
+      <nav className="pointer-events-auto mx-auto grid max-w-5xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-3xl border border-white/10 bg-background/60 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:flex md:items-center md:justify-between md:gap-4 md:rounded-full md:px-6">
+        <a href="#" className="flex min-w-0 items-center gap-2 font-display text-base font-bold">
+          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
             <HeartPulse className="h-4 w-4 text-primary-foreground" />
           </span>
-          VitalID<span className="text-accent">Riders</span>
+          <span className="truncate">
+            VitalID<span className="text-accent">Riders</span>
+          </span>
         </a>
+
         <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-sm text-muted-foreground md:flex">
-          {[
-            { href: "#como", label: "Cómo funciona" },
-            { href: "#beneficios", label: "Beneficios" },
-            { href: "#precios", label: "Precios" },
-            { href: "#testimonios", label: "Testimonios" },
-          ].map((l) => (
+          {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -88,12 +94,45 @@ function Nav() {
             </a>
           ))}
         </div>
+
         <a
           href="#precios"
-          className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)]"
+          className="hidden shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)] md:inline-flex"
         >
           Conseguir el mío
         </a>
+
+        <button
+          type="button"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-foreground transition-colors hover:bg-white/10 md:hidden"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+
+        {open && (
+          <div className="col-span-2 flex flex-col gap-1 border-t border-white/10 pt-3 text-sm md:hidden">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-2.5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="#precios"
+              onClick={() => setOpen(false)}
+              className="mt-1 rounded-xl bg-primary px-4 py-2.5 text-center font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)]"
+            >
+              Conseguir el mío
+            </a>
+          </div>
+        )}
       </nav>
     </header>
   );
