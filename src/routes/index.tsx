@@ -17,7 +17,8 @@ import {
   X,
 } from "lucide-react";
 import heroRider from "@/assets/hero-rider.jpg";
-import heroVideo from "@/assets/hero-rider.mp4.asset.json";
+import heroVideoDesktop from "@/assets/hero-rider-desktop.mp4.asset.json";
+import heroVideoMobile from "@/assets/hero-rider-mobile.mp4.asset.json";
 import qrTag from "@/assets/qr-tag.jpg";
 
 export const Route = createFileRoute("/")({
