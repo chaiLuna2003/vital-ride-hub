@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   ShieldCheck,
   QrCode,
@@ -139,9 +139,35 @@ function Nav() {
 }
 
 function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    // Forzar muted en el DOM real (React no siempre lo aplica) para permitir
+    // el autoplay en navegadores móviles.
+    v.muted = true;
+    v.setAttribute("muted", "");
+    const tryPlay = () => {
+      v.play().catch(() => {
+        /* el navegador puede bloquear hasta interacción; el póster se muestra */
+      });
+    };
+    tryPlay();
+    // Reintenta cuando el usuario interactúa (Modo bajo consumo / ahorro de datos)
+    const onInteract = () => tryPlay();
+    document.addEventListener("touchstart", onInteract, { once: true });
+    document.addEventListener("click", onInteract, { once: true });
+    return () => {
+      document.removeEventListener("touchstart", onInteract);
+      document.removeEventListener("click", onInteract);
+    };
+  }, []);
+
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <video
+        ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
         src={heroVideo.url}
         poster={heroRider}
@@ -149,8 +175,9 @@ function Hero() {
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
       />
+
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
       <div className="absolute inset-0 bg-hero-glow opacity-70" />
 
