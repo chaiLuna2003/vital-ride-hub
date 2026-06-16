@@ -75,14 +75,12 @@ function Nav() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-4">
       <nav className="pointer-events-auto mx-auto grid max-w-5xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-3xl border border-white/10 bg-background/60 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:flex md:items-center md:justify-between md:gap-4 md:rounded-full md:px-6">
-        <a href="#" className="flex min-w-0 items-center gap-2 font-display text-base font-bold">
-          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
-            <HeartPulse className="h-4 w-4 text-primary-foreground" />
-          </span>
+        <a href="#" className="flex min-w-0 items-center font-display text-2xl font-extrabold tracking-tight">
           <span className="truncate">
-            VitalID<span className="text-accent">Riders</span>
+            Q<span className="text-gradient">ride</span>
           </span>
         </a>
+
 
         <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-sm text-muted-foreground md:flex">
           {links.map((l) => (
