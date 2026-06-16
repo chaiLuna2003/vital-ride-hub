@@ -17,7 +17,8 @@ import {
   X,
 } from "lucide-react";
 import heroRider from "@/assets/hero-rider.jpg";
-import heroVideo from "@/assets/hero-rider.mp4.asset.json";
+import heroVideoDesktop from "@/assets/hero-rider-desktop.mp4.asset.json";
+import heroVideoMobile from "@/assets/hero-rider-mobile.mp4.asset.json";
 import qrTag from "@/assets/qr-tag.jpg";
 
 export const Route = createFileRoute("/")({
@@ -74,14 +75,12 @@ function Nav() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-4">
       <nav className="pointer-events-auto mx-auto grid max-w-5xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-3xl border border-white/10 bg-background/60 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:flex md:items-center md:justify-between md:gap-4 md:rounded-full md:px-6">
-        <a href="#" className="flex min-w-0 items-center gap-2 font-display text-base font-bold">
-          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
-            <HeartPulse className="h-4 w-4 text-primary-foreground" />
-          </span>
+        <a href="#" className="flex min-w-0 items-center font-display text-2xl font-extrabold tracking-tight">
           <span className="truncate">
-            VitalID<span className="text-accent">Riders</span>
+            Q<span className="text-gradient">ride</span>
           </span>
         </a>
+
 
         <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-sm text-muted-foreground md:flex">
           {links.map((l) => (
@@ -140,6 +139,15 @@ function Nav() {
 
 function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoSrc, setVideoSrc] = useState(heroVideoMobile.url);
+
+  useEffect(() => {
+    // Elegir la versión del video según el ancho del dispositivo para que
+    // móviles carguen el archivo más ligero.
+    const pickSrc = () =>
+      window.innerWidth >= 768 ? heroVideoDesktop.url : heroVideoMobile.url;
+    setVideoSrc(pickSrc());
+  }, []);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -162,14 +170,15 @@ function Hero() {
       document.removeEventListener("touchstart", onInteract);
       document.removeEventListener("click", onInteract);
     };
-  }, []);
+  }, [videoSrc]);
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <video
         ref={videoRef}
+        key={videoSrc}
         className="absolute inset-0 h-full w-full object-cover"
-        src={heroVideo.url}
+        src={videoSrc}
         poster={heroRider}
         autoPlay
         muted
@@ -177,6 +186,7 @@ function Hero() {
         playsInline
         preload="auto"
       />
+
 
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
       <div className="absolute inset-0 bg-hero-glow opacity-70" />
