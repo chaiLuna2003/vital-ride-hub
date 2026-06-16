@@ -141,6 +141,15 @@ function Nav() {
 
 function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoSrc, setVideoSrc] = useState(heroVideoMobile.url);
+
+  useEffect(() => {
+    // Elegir la versión del video según el ancho del dispositivo para que
+    // móviles carguen el archivo más ligero.
+    const pickSrc = () =>
+      window.innerWidth >= 768 ? heroVideoDesktop.url : heroVideoMobile.url;
+    setVideoSrc(pickSrc());
+  }, []);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -163,14 +172,15 @@ function Hero() {
       document.removeEventListener("touchstart", onInteract);
       document.removeEventListener("click", onInteract);
     };
-  }, []);
+  }, [videoSrc]);
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <video
         ref={videoRef}
+        key={videoSrc}
         className="absolute inset-0 h-full w-full object-cover"
-        src={heroVideo.url}
+        src={videoSrc}
         poster={heroRider}
         autoPlay
         muted
@@ -178,6 +188,7 @@ function Hero() {
         playsInline
         preload="auto"
       />
+
 
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
       <div className="absolute inset-0 bg-hero-glow opacity-70" />
