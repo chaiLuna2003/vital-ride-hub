@@ -95,10 +95,12 @@ function Nav() {
         </div>
 
         <a
-          href="#precios"
+          href="https://qride1.vercel.app/"
+          target = "_blank"
+          rel="noopener noreferrer"
           className="hidden shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)] md:inline-flex"
         >
-          Conseguir el mío
+          Iniciar Sesión
         </a>
 
         <button
@@ -125,10 +127,12 @@ function Nav() {
             ))}
             <a
               href="#precios"
+              target = "_blank"
+          rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="mt-1 rounded-xl bg-primary px-4 py-2.5 text-center font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)]"
             >
-              Conseguir el mío
+              Iniciar Sesion
             </a>
           </div>
         )}
@@ -480,7 +484,7 @@ function Pricing() {
       </div>
     </section>
   );
-}
+} 
 
 function Testimonials() {
   const items = [
