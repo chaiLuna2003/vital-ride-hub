@@ -19,7 +19,7 @@ import {
 import heroRider from "@/assets/hero-rider.jpg";
 import heroVideoDesktop from "@/assets/hero-rider-desktop.mp4.asset.json";
 import heroVideoMobile from "@/assets/hero-rider-mobile.mp4.asset.json";
-import qrTag from "@/assets/qr-tag.jpg";
+import qrTag from "@/assets/riderQR.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -263,7 +263,7 @@ function Stats() {
 
 function HowItWorks() {
   const steps = [
-    { icon: QrCode, title: "Activa tu placa", desc: "Recibe tu placa QR y vincúlala a tu perfil médico en minutos." },
+    { icon: QrCode, title: "Activa tu calcomanía", desc: "Recibe tu calcomanía QR y vincúlala a tu perfil médico en minutos." },
     { icon: Bike, title: "Llévala en tu casco", desc: "Adhiérela a tu casco o moto. Sin batería, resistente a golpes y agua." },
     { icon: Stethoscope, title: "Salva tu vida", desc: "En una emergencia, los rescatistas escanean y acceden a tu info vital." },
   ];
@@ -295,31 +295,53 @@ function Features() {
     { icon: Clock, title: "Acceso inmediato", desc: "Tu grupo sanguíneo, alergias y contactos en segundos." },
     { icon: Lock, title: "Control total", desc: "Tú decides qué información es visible. Cifrado de extremo a extremo." },
     { icon: Phone, title: "Aviso a familiares", desc: "Notificación automática a tus contactos de emergencia." },
-    { icon: MapPin, title: "Geolocalización", desc: "Comparte la ubicación del incidente al escanear la placa." },
+    
     { icon: HeartPulse, title: "Ficha médica", desc: "Condiciones, medicación y seguro siempre actualizados." },
     { icon: ShieldCheck, title: "Privacidad real", desc: "Tus datos nunca se venden. Tú eres el único dueño." },
   ];
   return (
     <section id="beneficios" className="bg-secondary/30 py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <Header
-          tag="Beneficios"
-          title="Más que una placa. Tu escudo vital."
-          subtitle="Tecnología que protege lo más importante: tú."
-        />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {feats.map((f) => (
-            <div key={f.title} className="rounded-2xl border border-border bg-card p-7 transition-transform hover:-translate-y-1">
-              <span className="grid h-11 w-11 place-items-center rounded-lg bg-accent/15">
-                <f.icon className="h-5 w-5 text-accent" />
-              </span>
-              <h3 className="mt-4 text-lg font-bold">{f.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+  <div className="mx-auto max-w-6xl px-6">
+    <Header
+      tag="Beneficios"
+      title="Más que una calcomanía. Tu escudo vital."
+      subtitle="Tecnología que protege lo más importante: tú."
+    />
+
+    <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+      {feats.map((f, index) => {
+        const isLastTwo = index >= feats.length - 2;
+
+        return (
+          <div
+            key={f.title}
+            className={`
+              rounded-2xl border border-border bg-card p-7
+              transition-transform hover:-translate-y-1
+              
+              col-span-1
+              sm:col-span-1
+              
+              ${isLastTwo ? "lg:col-span-3" : "lg:col-span-2"}
+            `}
+          >
+            <span className="grid h-11 w-11 place-items-center rounded-lg bg-accent/15">
+              <f.icon className="h-5 w-5 text-accent" />
+            </span>
+
+            <h3 className="mt-4 text-lg font-bold">
+              {f.title}
+            </h3>
+
+            <p className="mt-2 text-sm text-muted-foreground">
+              {f.desc}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
   );
 }
 
@@ -338,22 +360,18 @@ function Product() {
         />
       </div>
       <div>
-        <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold text-accent">
-          <QrCode className="h-4 w-4" /> La placa VitalID
-        </span>
+        
         <h2 className="mt-6 text-3xl font-extrabold md:text-4xl">
-          Acero grabado. <span className="text-gradient">Sin batería. Para siempre.</span>
+          QR <span className="text-gradient">Sin batería. Para siempre.</span>
         </h2>
         <p className="mt-4 text-muted-foreground">
-          Fabricada en acero inoxidable con grabado láser indeleble. Resistente al agua,
-          al sol y a los impactos. Tu información vital permanece accesible incluso cuando
-          tu teléfono no.
+          Sticker QR resistente y diseñado para durar. Con grabado permanente de alta precisión, tu información importante permanece accesible en cualquier momento, incluso cuando tu teléfono no está disponible.
         </p>
         <ul className="mt-6 space-y-3">
           {[
             "Compatible con cualquier smartphone (sin app)",
             "Tu perfil editable en cualquier momento",
-            "Garantía de por vida contra defectos",
+            
           ].map((t) => (
             <li key={t} className="flex items-center gap-3 text-sm">
               <span className="grid h-6 w-6 place-items-center rounded-full bg-success/20">
@@ -376,7 +394,7 @@ function Pricing() {
       monthly: 4,
       annualPrice: 39,
       desc: "Protección básica para empezar.",
-      features: ["1 placa QR de acero", "Ficha médica vital", "Contactos de emergencia", "Datos cifrados"],
+      features: ["1 calcomanía QR", "Ficha médica vital", "Contactos de emergencia", "Datos cifrados"],
     },
     {
       name: "Rider Pro",
@@ -384,7 +402,7 @@ function Pricing() {
       annualPrice: 79,
       desc: "La elección de los motociclistas serios.",
       features: [
-        "2 placas QR de acero",
+        "2 calcomanías QR",
         "Geolocalización en escaneo",
         "Aviso automático a familiares",
         "Perfil médico avanzado",
@@ -397,7 +415,7 @@ function Pricing() {
       monthly: 15,
       annualPrice: 149,
       desc: "Protege a todo tu grupo de ruta.",
-      features: ["5 placas QR de acero", "Todo lo de Rider Pro", "Panel familiar", "Gestión multiusuario"],
+      features: ["Hasta 5 calcomanía QR", "Todo lo de Rider Pro"],
     },
   ];
   return (
@@ -467,7 +485,7 @@ function Pricing() {
 function Testimonials() {
   const items = [
     {
-      quote: "Tuve una caída en carretera. Los paramédicos escanearon mi placa y supieron de mi alergia a un medicamento. Me salvó.",
+      quote: "Tuve una caída en carretera. Los paramédicos escanearon mi calcomanía y supieron de mi alergia a un medicamento. Me salvó.",
       name: "Daniel R.",
       role: "Rider desde 2019",
     },
@@ -514,14 +532,14 @@ function FinalCTA() {
           Cada ruta merece <span className="text-gradient">un regreso a casa</span>
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-          Lleva tu identidad vital siempre contigo. Activa tu placa hoy y rueda con la
+          Lleva tu identidad vital siempre contigo. Activa tu calcomanía hoy y rueda con la
           tranquilidad de estar protegido.
         </p>
         <a
           href="#precios"
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)]"
         >
-          Conseguir mi placa VitalID <ArrowRight className="h-4 w-4" />
+          Conseguir mi calcomanía <ArrowRight className="h-4 w-4" />
         </a>
       </div>
     </section>
@@ -532,18 +550,13 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 py-10 md:flex-row">
-        <a href="#" className="flex items-center gap-2 font-display font-bold">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[image:var(--gradient-accent)]">
-            <HeartPulse className="h-4 w-4 text-primary-foreground" />
-          </span>
-          VitalID<span className="text-accent">Riders</span>
-        </a>
+        
         <div className="flex gap-6 text-sm text-muted-foreground">
           <a href="#como" className="hover:text-foreground">Cómo funciona</a>
           <a href="#beneficios" className="hover:text-foreground">Beneficios</a>
           <a href="#precios" className="hover:text-foreground">Precios</a>
         </div>
-        <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} VitalID Riders</p>
+        <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Qride</p>
       </div>
     </footer>
   );
