@@ -45,7 +45,7 @@
   --radius: 0.9rem;
 
   /* Dark theme */
-  --background: #161427;
+  --background: #161429;
   --foreground: #F8F6F7;
 
   --card: #1E1B33;
@@ -76,11 +76,11 @@
   --input: color-mix(in oklab, #F8F6F7 18%, transparent);
   --ring: #B04A6A;
 
-  --hover: #922B4A;
+  --hover: #0B4F8A;
   --ivory: #F5F1F2;
 
   --gradient-hero: radial-gradient(circle at 20% 20%, color-mix(in oklab, #7B1E3A 45%, transparent), transparent 55%), radial-gradient(circle at 85% 10%, color-mix(in oklab, #2C254D 60%, transparent), transparent 60%);
-  --gradient-accent: linear-gradient(135deg, #7B1E3A, #B04A6A);
+  --gradient-accent: linear-gradient(135deg, #0B4F8A, #3FA9F5);
 }
 
 @layer base {

@@ -16,7 +16,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import heroRider from "@/assets/hero-rider.jpg";
+import heroRider from "@/assets/HeroIMMG.png";
 import heroVideoDesktop from "@/assets/hero-rider-desktop.mp4.asset.json";
 import heroVideoMobile from "@/assets/hero-rider-mobile.mp4.asset.json";
 import qrTag from "@/assets/riderQR.png";
@@ -65,6 +65,7 @@ function Landing() {
 
 function Nav() {
   const [open, setOpen] = useState(false);
+
   const links = [
     { href: "#como", label: "Cómo funciona" },
     { href: "#beneficios", label: "Beneficios" },
@@ -74,65 +75,77 @@ function Nav() {
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-3 sm:px-4">
-      <nav className="pointer-events-auto mx-auto grid max-w-5xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-3xl border border-white/10 bg-background/60 px-4 py-2.5 shadow-[var(--shadow-soft)] backdrop-blur-xl md:flex md:items-center md:justify-between md:gap-4 md:rounded-full md:px-6">
-        <a href="#" className="flex min-w-0 items-center font-display text-2xl font-extrabold tracking-tight">
+      <nav className="pointer-events-auto mx-auto grid max-w-5xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-3xl border border-white/20 bg-white/[0.06] px-4 py-2.5 shadow-[0_10px_40px_rgba(0,0,0,0.18)] backdrop-blur-3xl md:flex md:items-center md:justify-between md:gap-4 md:rounded-full md:px-6">
+        {/* Logo */}
+        <a
+          href="#"
+          className="flex min-w-0 items-center font-display text-2xl font-extrabold tracking-tight text-white"
+        >
           <span className="truncate">
             Q<span className="text-gradient">ride</span>
           </span>
         </a>
 
-
-        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-sm text-muted-foreground md:flex">
+        {/* Navegación Desktop */}
+        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.05] px-2 py-1 text-sm backdrop-blur-xl md:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-1.5 transition-colors hover:bg-white/10 hover:text-foreground"
+              className="rounded-full px-4 py-1.5 text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white"
             >
               {l.label}
             </a>
           ))}
         </div>
 
+        {/* Botón */}
         <a
           href="https://qride1.vercel.app/"
-          target = "_blank"
+          target="_blank"
           rel="noopener noreferrer"
-          className="hidden shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)] md:inline-flex"
+          className="hidden shrink-0 rounded-full  px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:scale-105 hover:bg-[var(--hover)] md:inline-flex"
         >
           Iniciar Sesión
         </a>
 
+        {/* Botón menú móvil */}
         <button
           type="button"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-foreground transition-colors hover:bg-white/10 md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/[0.05] text-white backdrop-blur-xl transition-all duration-300 hover:bg-white/10 md:hidden"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
         </button>
 
+        {/* Menú móvil */}
         {open && (
-          <div className="col-span-2 flex flex-col gap-1 border-t border-white/10 pt-3 text-sm md:hidden">
+          <div className="col-span-2 mt-2 flex flex-col gap-2 rounded-2xl border border-white/15 bg-white/[0.06] p-3 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-3xl md:hidden">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-4 py-2.5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+                className="rounded-xl px-4 py-3 text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white"
               >
                 {l.label}
               </a>
             ))}
+
             <a
-              href="#precios"
-              target = "_blank"
-          rel="noopener noreferrer"
+              href="https://qride1.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-1 rounded-xl bg-primary px-4 py-2.5 text-center font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)]"
+              className="mt-2 rounded-xl px-4 py-3 text-center font-semibold text-primary-foreground transition-all duration-300 hover:bg-[var(--hover)]"
             >
-              Iniciar Sesion
+              Iniciar Sesión
             </a>
           </div>
         )}
@@ -142,79 +155,43 @@ function Nav() {
 }
 
 function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoSrc, setVideoSrc] = useState(heroVideoMobile.url);
-
-  useEffect(() => {
-    // Elegir la versión del video según el ancho del dispositivo para que
-    // móviles carguen el archivo más ligero.
-    const pickSrc = () =>
-      window.innerWidth >= 768 ? heroVideoDesktop.url : heroVideoMobile.url;
-    setVideoSrc(pickSrc());
-  }, []);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    // Forzar muted en el DOM real (React no siempre lo aplica) para permitir
-    // el autoplay en navegadores móviles.
-    v.muted = true;
-    v.setAttribute("muted", "");
-    const tryPlay = () => {
-      v.play().catch(() => {
-        /* el navegador puede bloquear hasta interacción; el póster se muestra */
-      });
-    };
-    tryPlay();
-    // Reintenta cuando el usuario interactúa (Modo bajo consumo / ahorro de datos)
-    const onInteract = () => tryPlay();
-    document.addEventListener("touchstart", onInteract, { once: true });
-    document.addEventListener("click", onInteract, { once: true });
-    return () => {
-      document.removeEventListener("touchstart", onInteract);
-      document.removeEventListener("click", onInteract);
-    };
-  }, [videoSrc]);
-
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
-      <video
-        ref={videoRef}
-        key={videoSrc}
+      {/* Imagen de fondo */}
+      <img
+        src={heroRider}
+        alt="Motociclista utilizando el sistema"
         className="absolute inset-0 h-full w-full object-cover"
-        src={videoSrc}
-        poster={heroRider}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
       />
 
-
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
-      <div className="absolute inset-0 bg-hero-glow opacity-70" />
+      {/* Overlay */}
+      
 
       <div className="relative mx-auto w-full max-w-6xl px-6 py-32">
         <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-accent backdrop-blur-md">
-            <ShieldCheck className="h-4 w-4" /> Diseñado para motociclistas
-          </span>
+          
+
           <h1 className="mt-6 text-5xl font-extrabold leading-[1.03] md:text-7xl">
-            Tu identidad vital <span className="text-gradient">siempre contigo</span>
+            Tu identidad vital{" "}
+            <span className="text-gradient">
+              siempre contigo
+            </span>
           </h1>
-          <p className="mt-6 max-w-md text-lg text-muted-foreground">
-            Acceso médico inmediato y control total sobre tu información personal.
-            Si ocurre lo inesperado, cada segundo cuenta.
+
+          <p className="mt-6 max-w-md text-lg text-white/95 leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            Acceso médico inmediato y control total sobre tu información
+            personal. Si ocurre lo inesperado, cada segundo cuenta.
           </p>
+
           <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="#precios"
-              className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)]"
+              className="group inline-flex items-center gap-2 rounded-full  px-7 py-3.5 font-semibold text-primary-foreground transition-colors hover:bg-[var(--hover)]"
             >
               Proteger mi vida
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
+
             <a
               href="#como"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-7 py-3.5 font-semibold text-foreground backdrop-blur-md transition-colors hover:bg-white/10"
@@ -224,19 +201,20 @@ function Hero() {
           </div>
 
           <div className="mt-10 inline-flex flex-wrap items-center gap-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-sm text-muted-foreground backdrop-blur-md">
-            <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Sin batería</span>
-            <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Resistente al agua</span>
-            <span className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> Datos cifrados</span>
-          </div>
-        </div>
+            <span className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-success" />
+              Sin batería
+            </span>
 
-        <div className="animate-float mt-12 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-card/60 p-4 shadow-[var(--shadow-soft)] backdrop-blur-xl md:absolute md:bottom-12 md:right-6 md:mt-0">
-          <span className="animate-pulse-ring grid h-11 w-11 place-items-center rounded-full bg-success/20">
-            <HeartPulse className="h-5 w-5 text-success" />
-          </span>
-          <div>
-            <p className="text-sm font-semibold">Perfil médico activo</p>
-            <p className="text-xs text-muted-foreground">Listo para emergencias</p>
+            <span className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-success" />
+              Resistente al agua
+            </span>
+
+            <span className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-success" />
+              Datos cifrados
+            </span>
           </div>
         </div>
       </div>
@@ -251,13 +229,18 @@ function Stats() {
     { value: "100%", label: "Control de tus datos" },
     { value: "+8.000", label: "Riders protegidos" },
   ];
+
   return (
-    <section className="border-y border-border bg-secondary/30">
+    <section className="border-y border-border bg-[#F7F7F7]">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label} className="text-center">
-            <p className="font-display text-3xl font-extrabold text-gradient md:text-4xl">{s.value}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+            <p className="font-display text-3xl font-extrabold text-gradient md:text-4xl">
+              {s.value}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {s.label}
+            </p>
           </div>
         ))}
       </div>
@@ -267,28 +250,59 @@ function Stats() {
 
 function HowItWorks() {
   const steps = [
-    { icon: QrCode, title: "Activa tu calcomanía", desc: "Recibe tu calcomanía QR y vincúlala a tu perfil médico en minutos." },
-    { icon: Bike, title: "Llévala en tu casco", desc: "Adhiérela a tu casco o moto. Sin batería, resistente a golpes y agua." },
-    { icon: Stethoscope, title: "Salva tu vida", desc: "En una emergencia, los rescatistas escanean y acceden a tu info vital." },
+    {
+      icon: QrCode,
+      title: "Activa tu calcomanía",
+      desc: "Recibe tu calcomanía QR y vincúlala a tu perfil médico en minutos.",
+    },
+    {
+      icon: Bike,
+      title: "Llévala en tu casco",
+      desc: "Adhiérela a tu casco o moto. Sin batería, resistente a golpes y agua.",
+    },
+    {
+      icon: Stethoscope,
+      title: "Salva tu vida",
+      desc: "En una emergencia, los rescatistas escanean y acceden a tu info vital.",
+    },
   ];
+
   return (
-    <section id="como" className="mx-auto max-w-6xl px-6 py-24">
-      <Header
-        tag="Cómo funciona"
-        title="Tres pasos entre tú y la tranquilidad"
-        subtitle="Pensado para que actúe cuando tú no puedas hacerlo."
-      />
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {steps.map((s, i) => (
-          <div key={s.title} className="group relative rounded-2xl border border-border bg-card p-8 transition-colors hover:border-accent/60">
-            <span className="absolute right-6 top-6 font-display text-5xl font-extrabold text-secondary">{`0${i + 1}`}</span>
-            <span className="grid h-12 w-12 place-items-center rounded-xl bg-[image:var(--gradient-accent)]">
-              <s.icon className="h-6 w-6 text-primary-foreground" />
-            </span>
-            <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
-            <p className="mt-2 text-muted-foreground">{s.desc}</p>
-          </div>
-        ))}
+    <section id="como" className="bg-[#F7F7F7]">
+      <div className="mx-auto max-w-6xl px-6 py-24">
+        <Header
+          tag="Cómo funciona"
+          title="Tres pasos entre tú y la tranquilidad"
+          subtitle="Pensado para que actúe cuando tú no puedas hacerlo."
+        />
+
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <div
+              key={s.title}
+              className="group relative rounded-2xl border border-[#0D3B7F]/10 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0D3B7F]/30 hover:shadow-lg"
+            >
+              {/* Número decorativo */}
+              <span className="absolute right-6 top-6 font-display text-5xl font-extrabold text-[#0D3B7F]/10">
+                {`0${i + 1}`}
+              </span>
+
+              {/* Icono */}
+              <span className="grid h-12 w-12 place-items-center rounded-xl bg-[image:var(--gradient-accent)] shadow-md">
+                <s.icon className="h-6 w-6 text-white" />
+              </span>
+
+              {/* Texto */}
+              <h3 className="mt-5 text-xl font-bold text-[#0F172A]">
+                {s.title}
+              </h3>
+
+              <p className="mt-2 leading-relaxed text-[#64748B]">
+                {s.desc}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
