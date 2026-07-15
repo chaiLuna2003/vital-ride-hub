@@ -155,7 +155,7 @@ function Nav() {
           href="https://qride1.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:scale-105 hover:bg-[var(--hover)] md:inline-flex"
+          className="hidden shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold text-[#000]  transition-all duration-300 hover:scale-105 hover:bg-[var(--hover)] md:inline-flex"
         >
           Iniciar Sesión
         </a>
@@ -225,7 +225,7 @@ function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-xl px-4 py-3 text-center font-semibold text-primary-foreground transition-all hover:bg-[var(--hover)]"
+              className="mt-2 rounded-xl px-4 py-3 text-center font-semibold text-[#000] transition-all hover:bg-[var(--hover)]"
             >
               Iniciar Sesión
             </a>
