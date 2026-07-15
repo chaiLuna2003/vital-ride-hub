@@ -56,7 +56,7 @@ function Landing() {
       <HowItWorks />
       <Features />
       <Product />
-      <Pricing />
+      {/* <Pricing />  */}
       <Testimonials />
       <FinalCTA />
       <Footer />
@@ -633,7 +633,7 @@ function Pricing() {
     },
   ];
 
-  return (
+  return(
     <section id="precios" className="bg-[#F7F7F7] py-24">
       <div className="mx-auto max-w-6xl px-6">
 
@@ -942,7 +942,9 @@ function FinalCTA() {
 
           <div className="mt-8 flex justify-end">
             <a
-              href="#precios"
+              href="https://qride1.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 inline-flex
                 items-center
@@ -959,7 +961,7 @@ function FinalCTA() {
                 hover:scale-105
               "
             >
-              Conseguir mi calcomanía
+              Iniciar Sesión
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -1007,10 +1009,12 @@ function Footer() {
           </a>
 
           <a
-            href="#precios"
-            className="text-[#64748B] transition-colors hover:text-[#0D3B7F]"
+            href="https://qride1.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#64748B] font-bold transition-colors hover:text-[#0D3B7F]"
           >
-            Precios
+            Inicia Sesion
           </a>
 
           <a
